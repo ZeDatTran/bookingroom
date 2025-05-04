@@ -84,49 +84,4 @@ cd frontend
 npm start
 ```
 
-## API Endpoints
-
-### Authentication
-- POST `/auth/register` - Đăng ký tài khoản sinh viên
-- POST `/auth/register-admin` - Đăng ký tài khoản quản trị viên (yêu cầu mã xác thực)
-- POST `/auth/login` - Đăng nhập
-- POST `/auth/logout` - Đăng xuất
-- POST `/auth/refresh` - Làm mới token
-- GET `/auth/profile` - Xem thông tin người dùng
-- PUT `/auth/update` - Cập nhật thông tin người dùng
-
-### Quản Lý Phòng
-- GET `/spaces` - Lấy danh sách phòng
-- GET `/spaces/:id` - Lấy thông tin chi tiết phòng
-- POST `/spaces` - Tạo phòng mới (admin)
-- PUT `/spaces/:id` - Cập nhật thông tin phòng (admin)
-- DELETE `/spaces/:id` - Xóa phòng (admin)
-
-### Đặt Phòng
-- POST `/bookings` - Tạo đơn đặt phòng
-- GET `/bookings` - Xem danh sách đơn đặt phòng
-- GET `/bookings/:id` - Xem chi tiết đơn đặt phòng
-- PUT `/bookings/:id` - Cập nhật trạng thái đơn đặt phòng (admin)
-- DELETE `/bookings/:id` - Hủy đơn đặt phòng
-
-### Quản Lý Người Dùng
-- GET `/users` - Lấy danh sách người dùng (admin)
-- GET `/users/:id` - Lấy thông tin chi tiết người dùng
-- PUT `/users/:id` - Cập nhật thông tin người dùng (admin)
-- DELETE `/users/:id` - Xóa người dùng (admin)
-
-## Bảo Mật
-- Mật khẩu được mã hóa bằng bcrypt
-- JWT token cho xác thực
-- Refresh token để làm mới access token
-- Kiểm tra quyền truy cập cho các endpoint admin
-- Mã xác thực đặc biệt cho đăng ký quản trị viên
-
-## Đóng Góp
-1. Fork repository
-2. Tạo branch mới (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add some amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Tạo Pull Request
-
 ## Giấy Phép
