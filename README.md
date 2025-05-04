@@ -1,70 +1,132 @@
-# Getting Started with Create React App
+# Hệ Thống Đặt Phòng Học Tập HCMUT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hệ thống quản lý và đặt phòng học tập trực tuyến cho sinh viên Đại học Bách Khoa TP.HCM.
 
-## Available Scripts
+## Tính Năng
 
-In the project directory, you can run:
+### Cho Sinh Viên
+- Đăng ký tài khoản
+- Đăng nhập vào hệ thống
+- Xem danh sách phòng học
+- Đặt phòng học theo thời gian
+- Xem lịch sử đặt phòng
+- Đánh giá phòng học
+- Nhận thông báo về trạng thái đặt phòng
 
-### `npm start`
+### Cho Quản Trị Viên
+- Đăng ký tài khoản quản trị viên (yêu cầu mã xác thực)
+- Đăng nhập vào hệ thống
+- Quản lý thông tin người dùng
+- Quản lý danh sách phòng học
+- Xem thống kê sử dụng phòng
+- Quản lý đơn đặt phòng
+- Gửi thông báo đến người dùng
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Công Nghệ Sử Dụng
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+- Bcrypt Password Hashing
 
-### `npm test`
+### Frontend
+- React.js
+- Material-UI
+- React Router
+- Axios
+- Redux (nếu cần)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Cài Đặt và Chạy
 
-### `npm run build`
+### Yêu Cầu Hệ Thống
+- Node.js (v14 trở lên)
+- MongoDB
+- npm hoặc yarn
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Cài Đặt Backend
+```bash
+cd backend
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Cài Đặt Frontend
+```bash
+cd frontend
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Cấu Hình Môi Trường
+1. Tạo file `.env` trong thư mục backend:
+```
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/hcmut_study_space
+JWT_SECRET=your_jwt_secret
+REFRESH_TOKEN_SECRET=your_refresh_token_secret
+```
 
-### `npm run eject`
+2. Tạo file `.env` trong thư mục frontend:
+```
+REACT_APP_API_URL=http://localhost:5000
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Chạy Ứng Dụng
+1. Khởi động MongoDB
+2. Chạy backend:
+```bash
+cd backend
+npm start
+```
+3. Chạy frontend:
+```bash
+cd frontend
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API Endpoints
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Authentication
+- POST `/auth/register` - Đăng ký tài khoản sinh viên
+- POST `/auth/register-admin` - Đăng ký tài khoản quản trị viên (yêu cầu mã xác thực)
+- POST `/auth/login` - Đăng nhập
+- POST `/auth/logout` - Đăng xuất
+- POST `/auth/refresh` - Làm mới token
+- GET `/auth/profile` - Xem thông tin người dùng
+- PUT `/auth/update` - Cập nhật thông tin người dùng
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Quản Lý Phòng
+- GET `/spaces` - Lấy danh sách phòng
+- GET `/spaces/:id` - Lấy thông tin chi tiết phòng
+- POST `/spaces` - Tạo phòng mới (admin)
+- PUT `/spaces/:id` - Cập nhật thông tin phòng (admin)
+- DELETE `/spaces/:id` - Xóa phòng (admin)
 
-## Learn More
+### Đặt Phòng
+- POST `/bookings` - Tạo đơn đặt phòng
+- GET `/bookings` - Xem danh sách đơn đặt phòng
+- GET `/bookings/:id` - Xem chi tiết đơn đặt phòng
+- PUT `/bookings/:id` - Cập nhật trạng thái đơn đặt phòng (admin)
+- DELETE `/bookings/:id` - Hủy đơn đặt phòng
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Quản Lý Người Dùng
+- GET `/users` - Lấy danh sách người dùng (admin)
+- GET `/users/:id` - Lấy thông tin chi tiết người dùng
+- PUT `/users/:id` - Cập nhật thông tin người dùng (admin)
+- DELETE `/users/:id` - Xóa người dùng (admin)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Bảo Mật
+- Mật khẩu được mã hóa bằng bcrypt
+- JWT token cho xác thực
+- Refresh token để làm mới access token
+- Kiểm tra quyền truy cập cho các endpoint admin
+- Mã xác thực đặc biệt cho đăng ký quản trị viên
 
-### Code Splitting
+## Đóng Góp
+1. Fork repository
+2. Tạo branch mới (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add some amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Tạo Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Giấy Phép
