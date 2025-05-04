@@ -48,7 +48,7 @@ Hệ thống quản lý và đặt phòng học tập trực tuyến cho sinh vi
 ### Cài Đặt Backend
 ```bash
 cd backend
-npm install
+node server.js
 ```
 
 ### Cài Đặt Frontend
